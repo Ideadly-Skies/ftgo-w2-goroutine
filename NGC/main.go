@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"sync"
 	"time"
-	"math/rand"
 )
 
 func processImage(imageURL string){
@@ -36,29 +35,15 @@ func main(){
 		
 	// wait for the waitGroup to finish
 	wg.Wait()
-	
-	// Shuffle the order of the array to simulate "randomness" of array processing
-	rand.Seed(time.Now().UnixNano()) // Seed the random number generator
-	rand.Shuffle(len(image_URLs), func(i, j int) {
-		image_URLs[i], image_URLs[j] = image_URLs[j], image_URLs[i]
-	})
 
-	// add a waitGroup for image processing
-	wg.Add(1)
+	// output image processing completed should be asynchronous in nature
+	for i := 0; i < len(image_URLs); i++ {
+		go fmt.Printf("Image processing completed: %s\n", image_URLs[i])
+	}
 
-	// output image processing completed for the above four URLs
-	go func(){
-		defer wg.Done()
+	// invoke time.Sleep (hard-coded) for four URLs above
+	time.Sleep(4 * time.Duration(len(image_URLs)))
 
-		for i := 0; i < len(image_URLs); i++ {
-			fmt.Printf("Image processing completed: %s\n", image_URLs[i])
-			time.Sleep(1 * time.Second) // ensure 1 second delay with the next output
-		}
-	}()
-
-	// wait for the final waitGroup to finish
-	wg.Wait()
-	
 	// all image processing service have finished 
 	fmt.Println("All image processing completed.")
 }
