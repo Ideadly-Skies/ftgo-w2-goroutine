@@ -1,2 +1,2 @@
 # ftgo-w2-goroutine
-code repository for FTGO-W2-Goroutine lecture
+code repository for FTGO-W2-Goroutine lecture. goroutine corresponds to the lecture that is delivered by this week, NGC refers to the non-graded challenge, HandsOnLab is the HandsOnLab Activities that we're doing for the class. 

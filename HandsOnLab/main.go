@@ -10,7 +10,7 @@ import (
 func sendEmail(){
 	var emails = [5]string{"obie.kal22@gmail.com", "swaggykho@gmail.com", "nd.jyakarta@gmail.com", "maddison12@gmail.com", "randalf_mckinsey@gmail.com"}
 	for i := 0; i < len(emails); i++ {
-		fmt.Printf("Process %d sending email to: %s\n", i, emails[i])
+		fmt.Printf("Process %d sending email to: %s\n", i+1, emails[i])
 		time.Sleep(1 * time.Second)
 	}
 }
